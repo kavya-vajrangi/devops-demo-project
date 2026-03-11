@@ -29,7 +29,7 @@ pipeline {
 
         stage('Kube Score Check') {
             steps {
-                sh 'kube-score score deployment.yaml'
+                sh(script: 'kube-score score k8s/deployment.yaml', returnStatus: true)
             }
         }
 
