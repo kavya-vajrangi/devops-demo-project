@@ -14,6 +14,11 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+       stage('artifact upload') {
+            steps {
+                nexusArtifactUploader artifacts: [[artifactId: 'demo-app', classifier: '', file: 'target/demo-app-1.0.jar', type: '.jar']], credentialsId: '3a8532e5-2f09-43b7-ae52-51b091b13843', groupId: 'com.example', nexusUrl: '192.168.1.4:8081', nexusVersion: 'nexus2', protocol: 'http', repository: 'devops', version: '1.0'
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
