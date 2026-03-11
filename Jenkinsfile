@@ -23,7 +23,7 @@ pipeline {
 
         stage('Trivy Scan') {
             steps {
-                sh 'trivy image demo-app:v1'
+                sh 'trivy image --timeout 30m --severity HIGH,CRITICAL --exit-code 1 --no-progress demo-app'
             }
         }
 
