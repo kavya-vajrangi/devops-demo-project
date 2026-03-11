@@ -3,36 +3,46 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-<groupId>com.example</groupId>
-<artifactId>demo-app</artifactId>
-<version>1.0</version>
+    <groupId>com.example</groupId>
+    <artifactId>demo-app</artifactId>
+    <version>1.0</version>
 
-<packaging>jar</packaging>
+    <packaging>jar</packaging>
 
-<name>demo-app</name>
+    <name>demo-app</name>
 
-<properties>
-<maven.compiler.source>21</maven.compiler.source>
-<maven.compiler.target>21</maven.compiler.target>
-</properties>
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+    </properties>
 
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.3.0</version>
-            <configuration>
-                <archive>
-                    <manifest>
-                        <mainClass>com.example.App</mainClass>
-                    </manifest>
-                </archive>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
+    <build>
+        <plugins>
+            <!-- Build executable jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.example.App</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Nexus Deployment Configuration -->
+    <distributionManagement>
+        <repository>
+            <id>devops</id> <!-- must match server id in ~/.m2/settings.xml -->
+            <name>DevOps Release Repository</name>
+            <url>http://192.168.1.4:8081/repository/devops/</url>
+        </repository>
+    </distributionManagement>
 
 </project>
